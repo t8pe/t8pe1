@@ -1,5 +1,0 @@
-- Bitcoin plugin
-- paypal plugin
-- Google payments plugin
-- Google hosting necessaries?
-- pay google...
