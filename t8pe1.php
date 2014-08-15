@@ -9,7 +9,17 @@ Author URI: http://bendeschamps.com
 License: GPLv2
 */
 
+/* CUSTOM META BOXES */
 
+function t8pe1_create_total_plays_metabox() {
+  add_meta_box( 't8pe1_total_plays_metabox', 'Total plays:', 't8pe1_create_total_plays_metabox', 'song', 'normal' );
+}
+
+function t8pe1_total_plays_metabox( $post ) {
+  echo 'This is where the total plays are listed!';
+}
+
+add_action( 'add_meta_boxes', 't8pe1_create_total_plays_metabox' );
 
 /************************************************************************/
 /** CUSTOM POST TYPES **/

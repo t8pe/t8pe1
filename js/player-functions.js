@@ -14,14 +14,6 @@ function t8pe1_trigger_pay(){
     alert('t8pe1_trigger_pay successfully triggered!');
 }
 
-function t8pe1_add_to_playlist(){
-// Code available from jPlayer.playlist, perhaps? This may be unnecessary duplication.
-}
-
-function t8pe1_remove_from_playlist(){
-// Code available from jPlayer.playlist, perhaps? This may be unnecessary duplication.
-}
-
 function t8pe1_save_playlist(){
 // Triggered when hitting "Save Playlist"
 }
