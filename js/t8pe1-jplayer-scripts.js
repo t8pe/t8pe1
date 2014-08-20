@@ -16,6 +16,10 @@ function t8pe1_trigger_pay(){
     alert('t8pe1_trigger_pay successfully triggered!');
 }
 
-$("#jpId").bind($.jPlayer.event.play, function(event) { // Add a listener to report the time play began
-$("#playBeganAtTime").text("Play began at time = " + event.jPlayer.status.currentTime);
+// $("#jquery_jplayer_N").bind($.jPlayer.event.play, function(event) { // Add a listener to report the time play began
+// $("#playBeganAtTime").alert("Play began at time = " + event.jPlayer.status.currentTime);
+// });
+
+$("#jquery_jplayer_N").bind($.jPlayer.event.play, function(event) {
+    alert('it plays!');
 });
