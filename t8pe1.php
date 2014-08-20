@@ -9,6 +9,45 @@ Author URI: http://bendeschamps.com
 License: GPLv2
 */
 
+/* Registering jscripts */
+
+function t8pe1_scripts_method(){
+  if ( !is_admin() ){
+
+    wp_enqueue_script(
+		      't8pe1_jplayer_scripts',
+		      plugins_url( '/js/t8pe1-jplayer-scripts.js', __FILE__ ),
+		      array('jquery')
+	             );
+  }
+}
+add_action('wp_enqueue_scripts', 't8pe1_scripts_method');
+
+
+/* CUSTOM META BOXES */
+/* These should be entirely backend - ie not writable from the admin interface. */
+
+/* Total plays */
+function t8pe1_create_total_plays_metabox() {
+  add_meta_box( 't8pe1_total_plays_metabox', 'Total plays:', 't8pe1_create_total_plays_metabox', 'song', 'normal' );
+}
+
+function t8pe1_total_plays_metabox( $post ) {
+  echo 'This is where the total plays are listed!';
+}
+
+add_action( 'add_meta_boxes', 't8pe1_create_total_plays_metabox' );
+
+/* Total sales */
+function t8pe1_create_total_sales_metabox() {
+  add_meta_box( 't8pe1_total_sales_metabox', 'Total sales:', 't8pe1_create_total_sales_metabox', 'song', 'normal' );
+}
+
+function t8pe1_total_sales_metabox( $post ) {
+  echo 'This is where the total sales are listed!';
+}
+
+add_action( 'add_meta_boxes', 't8pe1_create_total_sales_metabox' );
 
 
 /************************************************************************/
