@@ -9,7 +9,21 @@ Author URI: http://bendeschamps.com
 License: GPLv2
 */
 
-/* Registering jscripts */
+// Use the single-playlist template
+function get_playlist_post_type_template($single_template) {
+ global $post;
+
+ if ($post->post_type == 'playlist') {
+      $single_template = dirname( __FILE__ ) . '/includes/templates/single-playlist.php';
+ }
+ return $single_template;
+}
+
+add_filter( "single_template", "get_playlist_post_type_template" ) ;
+
+
+
+/* Registering jscripts 
 
 function t8pe1_scripts_method(){
   if ( !is_admin() ){
@@ -23,6 +37,7 @@ function t8pe1_scripts_method(){
 }
 add_action('wp_enqueue_scripts', 't8pe1_scripts_method');
 
+*/
 /* Trying to add a way to track total_plays because the metabox don't like it - nope, this doesn't work either. */
 /* add_post_meta( $post->ID, total_plays, 0, yes ); */
 
@@ -223,16 +238,16 @@ register_activation_hook( __FILE__, 't8pe1_add_artist_role' );
 
 /** MISC FUNCTIONS **/
 
-function t8pe1_play_counter(){
-    $play_counter = "total_plays";
-    $plays = get_post_meta( $post->ID, $play_counter, true);
-    if($plays==''){
-	$plays = 0; //Hmmm. Probably not needed.
-	delete_post_meta($post->ID, $play_counter);
-	add_post_meta($post->ID, $play_counter, '1');
-    }else{
-	$count++;
-	update_post_meta($post->ID, $play_counter, $plays);
-    }
-}
+/* function t8pe1_play_counter(){ */
+/*     $play_counter = "total_plays"; */
+/*     $plays = get_post_meta( $post->ID, $play_counter, true); */
+/*     if($plays==''){ */
+/* 	$plays = 0; //Hmmm. Probably not needed. */
+/* 	delete_post_meta($post->ID, $play_counter); */
+/* 	add_post_meta($post->ID, $play_counter, '1'); */
+/*     }else{ */
+/* 	$count++; */
+/* 	update_post_meta($post->ID, $play_counter, $plays); */
+/*     } */
+/* } */
 ?>
