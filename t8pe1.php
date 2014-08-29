@@ -23,6 +23,8 @@ function t8pe1_scripts_method(){
 }
 add_action('wp_enqueue_scripts', 't8pe1_scripts_method');
 
+/* Trying to add a way to track total_plays because the metabox don't like it - nope, this doesn't work either. */
+/* add_post_meta( $post->ID, total_plays, 0, yes ); */
 
 /* CUSTOM META BOXES */
 /* These should be entirely backend - ie not writable from the admin interface. */
@@ -219,5 +221,18 @@ function t8pe1_add_artist_role() {
 }
 register_activation_hook( __FILE__, 't8pe1_add_artist_role' );
 
+/** MISC FUNCTIONS **/
 
+function t8pe1_play_counter(){
+    $play_counter = "total_plays";
+    $plays = get_post_meta( $post->ID, $play_counter, true);
+    if($plays==''){
+	$plays = 0; //Hmmm. Probably not needed.
+	delete_post_meta($post->ID, $play_counter);
+	add_post_meta($post->ID, $play_counter, '1');
+    }else{
+	$count++;
+	update_post_meta($post->ID, $play_counter, $plays);
+    }
+}
 ?>
