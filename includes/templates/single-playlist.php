@@ -88,17 +88,28 @@ endwhile;
 
    
     if(event.jPlayer.status.currentPercentAbsolute > 25 && event.jPlayer.status.currentPercentAbsolute < 26) {
-     // if(event.jPlayer.status.currentTime > 10 && event.jPlayer.status.currentTime < 11) {
-      //      alert("Zowie!");
-<?php 
+    
+    
+<?php
+
+      // Need to add a cond to see if the meta exists, and add if it doesn't
+      // if (! get_post_meta( $post, 'total_plays' ):
+      // add_post_meta( $post, 'total_plays', '0' );
       $total_plays = intval( get_post_meta( 71, 'total_plays', true )); 
       $total_plays++;
-      update_post_meta( 71, 'total_plays', $total_plays ); // Works fine - but only triggers ONCE before needing a reload, so no replay.
-      //      $total_plays = 0;
+      update_post_meta( 71, 'total_plays', $total_plays ); 
+      
+/* Will put this part in as soon as I get $post-> ID working the way it should.
+      if (! get_post_meta( $post, 'total_revenue' ):
+      add_post_meta( $post, 'total_revenue', '0' );
+      $total_revenue = intval( get_post_meta( $post, 'total_revenue', true )); 
+      $total_revenue++; // until I add the Dial, this will have to just add 1 to the revenue
+      update_post_meta( 71, 'total_revenue', $total_revenue ); 
+      */
 ?>
 
   }
-   }); // This triggers the functions only once, AFAICT. Anyway: there's the basic behaviour; now I need to solve the scroll-bar workaround case.
+   }); // Works fine - but only triggers ONCE before needing a reload, so no replay.
 
   });
 
