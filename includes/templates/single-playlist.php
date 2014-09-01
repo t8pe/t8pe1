@@ -33,7 +33,8 @@ foreach ( $song_array as $song ){
 			'artist'     => $song_obj->post_author,
 			'mp3'        => $song_obj->mp3,
 			'oga'        => $song_obj->ogg,
-			'poster'     => $song_obj->post_thumbnail
+			'poster'     => $song_obj->post_thumbnail,
+			'ID'         => $song_obj->ID // Using this to try to pass an ID to the payment module
 			);
 
   echo json_encode($songs_array, JSON_UNESCAPED_SLASHES) . ",";
@@ -93,11 +94,16 @@ endwhile;
 <?php
 
       // Need to add a cond to see if the meta exists, and add if it doesn't
-      // if (! get_post_meta( $post, 'total_plays' ):
-      // add_post_meta( $post, 'total_plays', '0' );
-      $total_plays = intval( get_post_meta( 71, 'total_plays', true )); 
+      $songID = 71;      
+
+      $total_plays = get_post_meta( $songID, 'total_plays', true ); 
+
+      if ( empty ( $total_plays ) )
+      add_post_meta( $songID, 'total_plays', '0' );
+      
+
       $total_plays++;
-      update_post_meta( 71, 'total_plays', $total_plays ); 
+      update_post_meta( $songID, 'total_plays', $total_plays ); //was 71
       
 /* Will put this part in as soon as I get $post-> ID working the way it should.
       if (! get_post_meta( $post, 'total_revenue' ):
