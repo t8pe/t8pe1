@@ -9,6 +9,23 @@ Author URI: http://bendeschamps.com
 License: GPLv2
 */
 
+// Trying the approach from wpsnipp.com
+
+function setPlayCount( $postID ) {
+  $count_key = 'play_count';
+  $count = get_post_meta( $postID, $count_key, true);
+  if( $count == '' ) {
+    // $count = 1;
+    delete_post_meta( $postID, $count_key );
+    add_post_meta( $postID, $count_key, '1' );
+  }
+else 
+  {
+    $count++;
+    update_post_meta( $postID, $count_key, $count );
+  }
+}
+
 // Use the single-playlist template
 function get_playlist_post_type_template($single_template) {
  global $post;

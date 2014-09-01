@@ -88,22 +88,26 @@ endwhile;
  $("#jquery_jplayer_N").bind($.jPlayer.event.timeupdate, function(event) { 
 
    
-    if(event.jPlayer.status.currentPercentAbsolute > 25 && event.jPlayer.status.currentPercentAbsolute < 26) {
+    if(event.jPlayer.status.currentPercentAbsolute > 2 && event.jPlayer.status.currentPercentAbsolute < 3) {
     
-    
-<?php
+     
+      <?php setPlayCount(71); ?>   
 
-      // Need to add a cond to see if the meta exists, and add if it doesn't
-      $songID = 71;      
 
-      $total_plays = get_post_meta( $songID, 'total_plays', true ); 
+      /* Still need to be sure of how to get the ID */
 
-      if ( empty ( $total_plays ) )
-      add_post_meta( $songID, 'total_plays', '0' );
+
+      /* // Need to add a cond to see if the meta exists, and add if it doesn't */
+      /* $songID = 71;       */
+
+      /* $total_plays = get_post_meta( $songID, 'total_plays', true );  */
+
+      /* if ( empty ( $total_plays ) ) */
+      /* add_post_meta( $songID, 'total_plays', '0' ); */
       
 
-      $total_plays++;
-      update_post_meta( $songID, 'total_plays', $total_plays ); //was 71
+      /* $total_plays++; */
+      /* update_post_meta( $songID, 'total_plays', $total_plays ); //was 71 */
       
 /* Will put this part in as soon as I get $post-> ID working the way it should.
       if (! get_post_meta( $post, 'total_revenue' ):
@@ -112,7 +116,7 @@ endwhile;
       $total_revenue++; // until I add the Dial, this will have to just add 1 to the revenue
       update_post_meta( 71, 'total_revenue', $total_revenue ); 
       */
-?>
+
 
   }
    }); // Works fine - but only triggers ONCE before needing a reload, so no replay.
